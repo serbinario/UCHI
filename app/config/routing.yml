@@ -1,0 +1,6 @@
+uchi:
+    resource: "@UCHIBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+
