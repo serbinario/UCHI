@@ -1,0 +1,32 @@
+<?php
+
+namespace Serbinario\Bundle\UCHIBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PerfilHanking
+ *
+ * @ORM\Table(name="perfil_hanking")
+ * @ORM\Entity
+ */
+class PerfilHanking
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_perfil_hanking", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idPerfilHanking;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_perfil_hanking", type="string", length=45, nullable=false)
+     */
+    private $nomePerfilHanking;
+
+
+}

@@ -1,0 +1,46 @@
+<?php
+
+namespace Serbinario\Bundle\UCHIBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PosGraduacao
+ *
+ * @ORM\Table(name="pos_graduacao")
+ * @ORM\Entity
+ */
+class PosGraduacao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_pos_graduacao", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idPosGraduacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_pos_graduacao", type="string", length=45, nullable=true)
+     */
+    private $nomePosGraduacao;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Canditato", mappedBy="posGraduacaoPosGraduacao")
+     */
+    private $canditatoCanditato;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->canditatoCanditato = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

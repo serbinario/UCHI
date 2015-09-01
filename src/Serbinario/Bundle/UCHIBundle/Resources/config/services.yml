@@ -1,0 +1,13 @@
+parameters:
+    rn.class.candidato:      Serbinario\Bundle\UCHIBundle\RN\CandidatoRN
+    dao.class.candidato:     Serbinario\Bundle\UCHIBundle\DAO\CandidatoDAO
+
+services:
+    dao_candidato:
+        class:        %dao.class.candidato%
+        arguments:    [ @doctrine.orm.entity_manager ]
+        
+    rn_candidato:
+        class:        %rn.class.candidato%
+        arguments:    [ @dao_candidato ]
+        

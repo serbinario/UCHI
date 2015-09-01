@@ -1,0 +1,81 @@
+<?php
+
+namespace Serbinario\Bundle\UCHIBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Empresa
+ *
+ * @ORM\Table(name="empresa")
+ * @ORM\Entity
+ */
+class Empresa
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_empresa", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idEmpresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_empresa", type="string", length=50, nullable=false)
+     */
+    private $nomeEmpresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cnpj_empresa", type="string", length=40, nullable=false)
+     */
+    private $cnpjEmpresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cep_empresa", type="string", length=20, nullable=false)
+     */
+    private $cepEmpresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="logradouro_empresa", type="string", length=50, nullable=false)
+     */
+    private $logradouroEmpresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bairro_empresa", type="string", length=50, nullable=false)
+     */
+    private $bairroEmpresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cidade_empresa", type="string", length=50, nullable=false)
+     */
+    private $cidadeEmpresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado_empresa", type="string", length=5, nullable=false)
+     */
+    private $estadoEmpresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pais_empresa", type="string", length=5, nullable=false)
+     */
+    private $paisEmpresa;
+
+
+}

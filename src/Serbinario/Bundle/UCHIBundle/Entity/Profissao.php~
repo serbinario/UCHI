@@ -1,0 +1,32 @@
+<?php
+
+namespace Serbinario\Bundle\UCHIBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Profissao
+ *
+ * @ORM\Table(name="profissao")
+ * @ORM\Entity
+ */
+class Profissao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_profissao", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idProfissao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_profissao", type="string", length=50, nullable=false)
+     */
+    private $nomeProfissao;
+
+
+}
