@@ -136,7 +136,12 @@ class DefaultController extends Controller
                 }
                 
                 #Deleção dos candidatosTemTrabalho
-                $candidatoRN->deleteFromForm($idTrabalhos);
+                if(count($idTrabalhos) > 0) {
+                    $candidatoRN->deleteFromForm($candidato, $idTrabalhos);
+                } else {
+                    $candidatoRN->deleteFromForm($candidato);
+                }
+                
                 
                 #Resultado da operação
                 $result =  $candidatoRN->update($candidato);

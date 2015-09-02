@@ -96,15 +96,30 @@ class CandidatoDAO
      * @param type $id
      * @return boolean
      */
-    public function deleteFromForm($id)
+    public function deleteFromForm($candidato, $id = array())
     {
         try {
-            $qb    = $this->manager->createQueryBuilder();
-            $query = $qb->delete("Serbinario\Bundle\UCHIBundle\Entity\CandidatoTemTrabalho", "a")                        
-                        ->where($qb->expr()->notIn("a.id", ":id"))
-                        ->setParameter("id", $id);
+            $qb = $this->manager->createQueryBuilder();
+            $qb->select("a");
+            $qb->from("Serbinario\Bundle\UCHIBundle\Entity\CandidatoTemTrabalho", "a");
+            $qb->innerJoin("a.candidatoCandidato", "b");
+            $qb->where($qb->expr()->eq("b", ":candidato"));
+            $qb->setParameter("candidato", $candidato);
             
-            return $query->getQuery()->execute();        
+            if(count($id) > 0) {
+                $qb->andWhere($qb->expr()->notIn("a.id", ":id"));
+                $qb->setParameter("id", $id);
+            }          
+            
+            $query = $qb->getQuery()->getResult();
+            
+            foreach($query as $result){
+                $this->manager->remove($result);
+            }
+            
+            $this->manager->flush();
+            
+            return true;
         } catch (Exception $ex) {
             return false;
         }

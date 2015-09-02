@@ -78,9 +78,9 @@ class CandidatoRN
      * @param type $id
      * @return type
      */
-    public function deleteFromForm($id)
+    public function deleteFromForm($candidato, $id = array())
     {
-        $result = $this->cbo->deleteFromForm($id);
+        $result = $this->cbo->deleteFromForm($candidato, $id);
         
         return $result;
     }
