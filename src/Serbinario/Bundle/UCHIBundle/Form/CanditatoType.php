@@ -96,6 +96,7 @@ class CanditatoType extends AbstractType
                 'multiple'     => false,
                 'expanded'     => true,
                 'class' => 'Serbinario\Bundle\UCHIBundle\Entity\ExperienciaProfissional',
+                'data_class' => 'Serbinario\Bundle\UCHIBundle\Entity\ExperienciaProfissional',
                 'attr' => array(
                      'widget_col'=> '4',
                     )
@@ -135,7 +136,7 @@ class CanditatoType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Serbinario\Bundle\UCHIBundle\Entity\Canditato'
+            'data_class' => 'Serbinario\Bundle\UCHIBundle\Entity\Canditato',
         ));
     }
 

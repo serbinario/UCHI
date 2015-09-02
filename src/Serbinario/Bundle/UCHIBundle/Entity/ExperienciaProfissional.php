@@ -27,7 +27,12 @@ class ExperienciaProfissional
      * @ORM\Column(name="nome_experiencia_profissional", type="string", length=20, nullable=false)
      */
     private $nomeExperienciaProfissional;
-
+    
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Canditato", mappedBy="experienciaProfissionalExperienciaProfissional", cascade={"all"})
+     */
+    private $canditato;
 
 
     /**
@@ -71,4 +76,14 @@ class ExperienciaProfissional
     {
         return $this->getNomeExperienciaProfissional();
     }
+    
+    function getCanditato() {
+        return $this->canditato;
+    }
+
+    function setCanditato( $canditato) {
+        $this->canditato = $canditato;
+    }
+
+
 }

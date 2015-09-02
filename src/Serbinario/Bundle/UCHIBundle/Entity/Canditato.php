@@ -94,7 +94,7 @@ class Canditato
     /**
      * @var \ExperienciaProfissional
      *
-     * @ORM\ManyToOne(targetEntity="ExperienciaProfissional")
+     * @ORM\ManyToOne(targetEntity="ExperienciaProfissional", inversedBy="canditato")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="experiencia_profissional_id_experiencia_profissional", referencedColumnName="id_experiencia_profissional")
      * })

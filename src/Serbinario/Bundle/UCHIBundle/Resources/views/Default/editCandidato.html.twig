@@ -1,0 +1,45 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        {% for label, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                <div class="alert alert-dismissable alert-{{ label }}">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ flash }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <div class="row clearfix">            
+            <legend>Edição de Candidatos</legend>
+            <div class="col-md-13 column">
+                {{ form_start(form, { 'style': 'horizontal' }) }}                    
+                    {{ form_row(form.nomeCanditato) }}   
+                    {{ form_row(form.nascimentoCanditato) }} 
+                    {{ form_row(form.rgCandidato) }} 
+                    {{ form_row(form.cpfCandidato) }} 
+                    {{ form_row(form.cepCanditato) }} 
+                    {{ form_row(form.logradouroCandidato) }} 
+                    {{ form_row(form.bairroCanditato) }} 
+                    {{ form_row(form.cidadeCandidato) }} 
+                    {{ form_row(form.estadoCanditato) }} 
+                    {{ form_row(form.paisCandidato) }} 
+                    {{ form_row(form.profissaoProfissao) }} 
+                    {{ form_row(form.experienciaProfissionalExperienciaProfissional) }} 
+                    {{ form_row(form.posGraduacaoPosGraduacao) }} 
+                    {{ form_row(form.candidatoTemTrabalho) }} 
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}     
+    {{ parent() }}
+    <script type="text/javascript" language="javascript" class="init">
+        $("#serbinario_bundle_uchibundle_canditato_actions_cancel").click(function() {
+            javascript:history.back();
+        });
+    </script>
+{% endblock %}

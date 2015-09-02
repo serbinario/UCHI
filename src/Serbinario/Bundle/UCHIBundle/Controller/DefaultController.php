@@ -97,6 +97,118 @@ class DefaultController extends Controller
     }
     
     /**
+     * @Route("/editCandidato/id/{id}", name="editCandidato")
+     * @Template()
+     */
+    public function editCandidatoAction(Request $request, $id)
+    {
+        #Recuperando o serviço do modelo
+        $candidatoRN = $this->get("rn_candidato");
+      
+        #Criando o formulário
+        $form = $this->createForm(new CanditatoType());
+        
+        if($id) {
+            #Recupera o empresa selecionado
+            $candidatoRecuperado = $candidatoRN->find($id);
+        }
+        
+        
+        #Preenche o formulário com os dados do empresa
+        $form->setData($candidatoRecuperado);
+          //var_dump($candidatoRecuperado);exit();
+        #Verficando se é uma submissão
+        if($request->getMethod() === "POST") {
+            #Repasando a requisição
+            $form->handleRequest($request);
+
+            #Verifica se os dados são válidos
+            if($form->isValid()) {
+                #Recuperando os dados
+                $candidato = $form->getData();
+                
+                #Resultado da operação
+                $result =  $candidatoRN->update($candidato);
+                
+                if($result) {
+                    #Messagem de retorno
+                    $this->addFlash('success', 'Dados cadastrado com sucesso!');
+                } else {
+                    $this->addFlash('danger', 'Houve um erro ao cadastrar os dados, tente novamente!');
+                }
+               
+                #Retorno
+                return array("form" => $form->createView());
+            } else {
+                $this->addFlash('warning', 'Há campos obrigatório que não foram preenchidos');
+            }
+        }
+        
+        #Retorno
+        return array("form" => $form->createView());
+    }
+    
+    /**
+     * @Route("/gridCandidato", name="gridCandidato")
+     * @Template()
+     */
+    public function gridCandidatoAction(Request $request) {
+        
+        if(GridClass::isAjax()) {
+            
+            $columns = array(
+                "a.nomeCanditato",
+                "a.cpfCandidato",
+                "a.rgCandidato"
+                );
+
+            $entityJOIN = array();             
+            $eventosArray         = array();
+            $parametros           = $request->request->all();       
+            $entity               = "Serbinario\Bundle\UCHIBundle\Entity\Canditato"; 
+            $columnWhereMain      = "";
+            $whereValueMain       = "";
+            
+            $gridClass = new GridClass($this->getDoctrine()->getManager(), 
+                    $parametros,
+                    $columns,
+                    $entity,
+                    $entityJOIN,           
+                    $columnWhereMain,
+                    $whereValueMain);
+
+            $resultCliente  = $gridClass->builderQuery();    
+            $countTotal     = $gridClass->getCount();
+            $countEventos   = count($resultCliente);
+
+            for($i=0;$i < $countEventos; $i++)
+            {
+                $eventosArray[$i]['DT_RowId']           =  "row_".$resultCliente[$i]->getIdCanditato();
+                $eventosArray[$i]['id']                 =  $resultCliente[$i]->getIdCanditato();
+                $eventosArray[$i]['nomeCanditato']      =  $resultCliente[$i]->getNomeCanditato();
+                $eventosArray[$i]['cpfCandidato']       =  $resultCliente[$i]->getCpfCandidato(); 
+                $eventosArray[$i]['rgCandidato']        =  $resultCliente[$i]->getRgCandidato(); 
+            }
+
+            //Se a variável $sqlFilter estiver vazio
+            if(!$gridClass->isFilter()){
+                $countEventos = $countTotal;
+            }
+
+            $columns = array(               
+                'draw'              => $parametros['draw'],
+                'recordsTotal'      => "{$countTotal}",
+                'recordsFiltered'   => "{$countEventos}",
+                'data'              => $eventosArray               
+            );
+
+            return new JsonResponse($columns);
+        }else{            
+            return array();            
+        }
+    }
+    
+    /**
      * 
      * @Route("/gridRankingGeral", name="gridRankingGeral")
      * @Template()
