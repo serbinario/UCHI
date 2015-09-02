@@ -89,5 +89,24 @@ class CandidatoDAO
         } catch (Exception $ex) {
             return null;
         }
-    } 
+    }
+    
+    /**
+     * 
+     * @param type $id
+     * @return boolean
+     */
+    public function deleteFromForm($id)
+    {
+        try {
+            $qb    = $this->manager->createQueryBuilder();
+            $query = $qb->delete("Serbinario\Bundle\UCHIBundle\Entity\CandidatoTemTrabalho", "a")                        
+                        ->where($qb->expr()->notIn("a.id", ":id"))
+                        ->setParameter("id", $id);
+            
+            return $query->getQuery()->execute();        
+        } catch (Exception $ex) {
+            return false;
+        }
+    }
 }

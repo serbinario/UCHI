@@ -86,7 +86,8 @@ class DefaultController extends Controller
                 $form = $this->createForm(new CanditatoType());
                
                 #Retorno
-                return array("form" => $form->createView());
+                //return array("form" => $form->createView());
+                return $this->redirectToRoute("gridCandidato");
             } else {
                 $this->addFlash('warning', 'Há campos obrigatório que não foram preenchidos');
             }
@@ -127,12 +128,15 @@ class DefaultController extends Controller
                 #Recuperando os dados
                 $candidato = $form->getData();
                 
-                //Adiciona as opções desejadas
+                #Adiciona as opções desejadas
                 $idTrabalhos = array();
                 foreach ($candidato->getCandidatoTemTrabalho() as $trabalhos) {
                     $idTrabalhos[] = $trabalhos->getId();
                     $trabalhos->setCandidatoCandidato($candidato);
                 }
+                
+                #Deleção dos candidatosTemTrabalho
+                $candidatoRN->deleteFromForm($idTrabalhos);
                 
                 #Resultado da operação
                 $result =  $candidatoRN->update($candidato);
@@ -145,7 +149,8 @@ class DefaultController extends Controller
                 }
                
                 #Retorno
-                return array("form" => $form->createView());
+                //return array("form" => $form->createView());
+                return $this->redirectToRoute("gridCandidato");
             } else {
                 $this->addFlash('warning', 'Há campos obrigatório que não foram preenchidos');
             }
@@ -159,7 +164,8 @@ class DefaultController extends Controller
      * @Route("/gridCandidato", name="gridCandidato")
      * @Template()
      */
-    public function gridCandidatoAction(Request $request) {
+    public function gridCandidatoAction(Request $request) 
+    {
         
         if(GridClass::isAjax()) {
             

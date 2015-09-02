@@ -72,4 +72,16 @@ class CandidatoRN
         
         return $result;
     }
+    
+    /**
+     * 
+     * @param type $id
+     * @return type
+     */
+    public function deleteFromForm($id)
+    {
+        $result = $this->cbo->deleteFromForm($id);
+        
+        return $result;
+    }
 }
