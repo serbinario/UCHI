@@ -124,7 +124,7 @@ class CanditatoType extends AbstractType
             ->add('actions', 'form_actions', [
                 'buttons' => [
                     'save' => ['type' => 'submit', 'options' => ['label' => 'Salvar']],
-                    'cancel' => ['type' => 'button', 'options' => ['label' => 'Cancelar']],
+                    'cancel' => ['type' => 'button', 'options' => ['label' => 'Voltar']],
                 ]
             ])
         ;
