@@ -62,4 +62,13 @@ class Profissao
     {
         return $this->nomeProfissao;
     }
+    
+    /**
+     * 
+     * @return type
+     */
+    public function __toString() 
+    {
+        return $this->getNomeProfissao();
+    }
 }

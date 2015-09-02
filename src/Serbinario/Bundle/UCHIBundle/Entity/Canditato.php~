@@ -92,16 +92,6 @@ class Canditato
     private $paisCandidato;
 
     /**
-     * @var \Profissao
-     *
-     * @ORM\ManyToOne(targetEntity="Profissao")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="profissao_id_profissao", referencedColumnName="id_profissao")
-     * })
-     */
-    private $profissaoProfissao;
-
-    /**
      * @var \ExperienciaProfissional
      *
      * @ORM\ManyToOne(targetEntity="ExperienciaProfissional")
@@ -110,6 +100,16 @@ class Canditato
      * })
      */
     private $experienciaProfissionalExperienciaProfissional;
+
+    /**
+     * @var \Profissao
+     *
+     * @ORM\ManyToOne(targetEntity="Profissao")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="profissao_id_profissao", referencedColumnName="id_profissao")
+     * })
+     */
+    private $profissaoProfissao;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -127,11 +127,27 @@ class Canditato
     private $posGraduacaoPosGraduacao;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Trabalho", inversedBy="canditatoCanditato")
+     * @ORM\JoinTable(name="canditato_tem_trabalho",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="canditato_id_canditato", referencedColumnName="id_canditato")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="trabalho_id_trabalho", referencedColumnName="id_trabalho")
+     *   }
+     * )
+     */
+    private $trabalhoTrabalho;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->posGraduacaoPosGraduacao = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->trabalhoTrabalho = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 }

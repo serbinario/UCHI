@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CandidatoType extends AbstractType
+class CanditatoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -32,12 +32,12 @@ class CandidatoType extends AbstractType
                 )
             ))
             ->add('rgCandidato', 'text', array(
-                'label' => 'Nº registro de nascimento', 
+                'label' => 'RG *', 
                 'required'     => false,
                 'attr' => array(
-                    'placeholder' => 'Nº registro de nascimento',
+                    'placeholder' => 'RG',
                     'widget_col'=> '4',
-                    "class"    => " mask_numero"
+                    "class"    => " mask_rg"
                 )))
             ->add('cpfCandidato', 'text', array(
                 'label' => 'CPF *',           
@@ -86,29 +86,46 @@ class CandidatoType extends AbstractType
             ->add('profissaoProfissao', 'entity', array(
                 'label'        => 'Profissao *',
                 'empty_value' => "Selecione uma profissão",
-                'class' => 'SerBinario\Bundle\UCHIBundle\Entity\Profissao',
+                'class' => 'Serbinario\Bundle\UCHIBundle\Entity\Profissao',
                 'attr' => array(
                      'widget_col'=> '4',
                     )
                 ))
-            ->add('experienciaProfissionalExperienciaProfissional', array(
+            ->add('experienciaProfissionalExperienciaProfissional', 'entity', array(
                 'label'        => 'Experiencia Profissional *',
                 'multiple'     => false,
                 'expanded'     => true,
-                'class' => 'SerBinario\Bundle\UCHIBundle\Entity\ExperienciaProfissional',
+                'class' => 'Serbinario\Bundle\UCHIBundle\Entity\ExperienciaProfissional',
                 'attr' => array(
                      'widget_col'=> '4',
                     )
                 ))
-            ->add('posGraduacaoPosGraduacao', array(
+            ->add('posGraduacaoPosGraduacao', 'entity', array(
                 'label'        => 'Pós Graduação *',
                 'multiple'     => true,
                 'expanded'     => true,
-                'class' => 'SerBinario\Bundle\UCHIBundle\Entity\PosGraduacao',
+                'class' => 'Serbinario\Bundle\UCHIBundle\Entity\PosGraduacao',
                 'attr' => array(
                      'widget_col'=> '4',
                     )
                 ))
+            ->add('candidatoTemTrabalho', 'bootstrap_collection', array(
+                'label'              => "Trabalhos",
+                'required'     => false,
+                'type'               => new CandidatoTemTrabalhoType() ,
+                'allow_add'          => true,
+                'allow_delete'       => true,
+                'add_button_text'    => 'Adicionar',
+                'delete_button_text' => 'Remover',
+                'sub_widget_col'     => 6,
+                'button_col'         => 6           
+                ))
+            ->add('actions', 'form_actions', [
+                'buttons' => [
+                    'save' => ['type' => 'submit', 'options' => ['label' => 'Salvar']],
+                    'cancel' => ['type' => 'button', 'options' => ['label' => 'Cancelar']],
+                ]
+            ])
         ;
     }
     
@@ -118,7 +135,7 @@ class CandidatoType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Serbinario\Bundle\UCHIBundle\Entity\Candidato'
+            'data_class' => 'Serbinario\Bundle\UCHIBundle\Entity\Canditato'
         ));
     }
 
@@ -127,6 +144,6 @@ class CandidatoType extends AbstractType
      */
     public function getName()
     {
-        return 'serbinario_bundle_uchibundle_candidato';
+        return 'serbinario_bundle_uchibundle_canditato';
     }
 }

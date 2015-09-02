@@ -1,15 +1,15 @@
 <?php
 namespace Serbinario\Bundle\UCHIBundle\RN;
 
-use Serbinario\Bundle\UCHIBundle\DAO\CandidatoDAO;
-use Serbinario\Bundle\UCHIBundle\Entity\Canditato;
+use Serbinario\Bundle\UCHIBundle\DAO\RankingDAO;
+use Serbinario\Bundle\UCHIBundle\Entity\Hanking;
 
 /**
- * Description of Candidato
+ * Description of RankingRN
  *
  * @author serbinario
  */
-class CandidatoRN
+class RankingRN 
 {
     /**
      *
@@ -19,19 +19,19 @@ class CandidatoRN
     
     /**
      * 
-     * @param CandidatoDAO $cbo
+     * @param RankingDAO $cbo
      */
-    public function __construct(CandidatoDAO $cbo) 
+    public function __construct(RankingDAO $cbo) 
     {
         $this->cbo = $cbo;
     }
     
     /**
      * 
-     * @param Canditato $entity
+     * @param Hanking $entity
      * @return type
      */
-    public function save(Canditato $entity)
+    public function save(Hanking $entity)
     {
         $result = $this->cbo->save($entity);
         
@@ -40,10 +40,10 @@ class CandidatoRN
     
     /**
      * 
-     * @param Canditato $entity
+     * @param Hanking $entity
      * @return type
      */
-    public function update(Canditato $entity)
+    public function update(Hanking $entity)
     {
         $result = $this->cbo->update($entity);
         

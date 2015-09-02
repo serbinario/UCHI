@@ -109,4 +109,13 @@ class PosGraduacao
     {
         return $this->canditatoCanditato;
     }
+    
+    /**
+     * 
+     * @return type
+     */
+    public function __toString() 
+    {
+        return $this->getNomePosGraduacao();
+    }
 }

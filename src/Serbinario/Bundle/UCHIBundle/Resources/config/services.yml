@@ -1,6 +1,8 @@
 parameters:
     rn.class.candidato:      Serbinario\Bundle\UCHIBundle\RN\CandidatoRN
     dao.class.candidato:     Serbinario\Bundle\UCHIBundle\DAO\CandidatoDAO
+    rn.class.hanking:        Serbinario\Bundle\UCHIBundle\RN\RankingRN
+    dao.class.hanking:       Serbinario\Bundle\UCHIBundle\DAO\RankingDAO
 
 services:
     dao_candidato:
@@ -10,4 +12,12 @@ services:
     rn_candidato:
         class:        %rn.class.candidato%
         arguments:    [ @dao_candidato ]
+    
+    dao_hanking:
+        class:        %dao.class.hanking%
+        arguments:    [ @doctrine.orm.entity_manager ]
+        
+    rn_hanking:
+        class:        %rn.class.hanking%
+        arguments:    [ @dao_hanking ]
         

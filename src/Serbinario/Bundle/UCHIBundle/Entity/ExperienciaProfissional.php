@@ -62,4 +62,13 @@ class ExperienciaProfissional
     {
         return $this->nomeExperienciaProfissional;
     }
+    
+    /**
+     * 
+     * @return type
+     */
+    public function __toString() 
+    {
+        return $this->getNomeExperienciaProfissional();
+    }
 }

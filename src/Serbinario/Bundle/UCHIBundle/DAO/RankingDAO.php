@@ -1,15 +1,15 @@
 <?php
 namespace Serbinario\Bundle\UCHIBundle\DAO;
 
+use Serbinario\Bundle\UCHIBundle\Entity\Hanking;
 use Doctrine\ORM\EntityManager;
-use Serbinario\Bundle\UCHIBundle\Entity\Canditato;
 
 /**
- * Description of CandidatoDAO
+ * Description of RankingDAO
  *
  * @author serbinario
  */
-class CandidatoDAO 
+class RankingDAO 
 {
     /**
      *
@@ -28,10 +28,10 @@ class CandidatoDAO
     
     /**
      * 
-     * @param Canditato $entity
-     * @return boolean|Canditato
+     * @param Hanking $entity
+     * @return boolean|Hanking
      */
-    public function save(Canditato $entity)
+    public function save(Hanking $entity)
     {
         try {
             $this->manager->persist($entity);
@@ -45,10 +45,10 @@ class CandidatoDAO
     
     /**
      * 
-     * @param Canditato $entity
-     * @return boolean|Canditato
+     * @param Hanking $entity
+     * @return boolean|Hanking
      */
-    public function update(Canditato $entity)
+    public function update(Hanking $entity)
     {
         try {
             $this->manager->merge($entity);
@@ -68,7 +68,7 @@ class CandidatoDAO
     public function find($id)
     {
         try {
-            $obj = $this->manager->getRepository("Serbinario\Bundle\UCHIBundle\Entity\Canditato")->find($id);
+            $obj = $this->manager->getRepository("Serbinario\Bundle\UCHIBundle\Entity\Hanking")->find($id);
         
             return $obj;
         } catch (Exception $ex) {
@@ -83,11 +83,11 @@ class CandidatoDAO
     public function all()
     {
         try {
-            $arrayObj = $this->manager->getRepository("Serbinario\Bundle\UCHIBundle\Entity\Canditato");
+            $arrayObj = $this->manager->getRepository("Serbinario\Bundle\UCHIBundle\Entity\Hanking")->findAll();
 
             return $arrayObj;
         } catch (Exception $ex) {
             return null;
         }
-    } 
+    }
 }

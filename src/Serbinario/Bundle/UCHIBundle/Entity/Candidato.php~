@@ -1,4 +1,5 @@
 <?php
+
 namespace Serbinario\Bundle\UCHIBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -126,11 +127,20 @@ class Candidato
     private $posGraduacaoPosGraduacao;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * 
+     * @ORM\OneToMany(targetEntity="CandidatoTemTrabalho", mappedBy="candidato",cascade={"persist","remove"} )
+     */
+    private $trabalhoTrabalho;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->posGraduacaoPosGraduacao = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->trabalhoTrabalho = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -451,5 +461,38 @@ class Candidato
     public function getPosGraduacaoPosGraduacao()
     {
         return $this->posGraduacaoPosGraduacao;
+    }
+
+    /**
+     * Add trabalhoTrabalho
+     *
+     * @param \Serbinario\Bundle\UCHIBundle\Entity\Trabalho $trabalhoTrabalho
+     * @return Canditato
+     */
+    public function addTrabalhoTrabalho(\Serbinario\Bundle\UCHIBundle\Entity\Trabalho $trabalhoTrabalho)
+    {
+        $this->trabalhoTrabalho[] = $trabalhoTrabalho;
+
+        return $this;
+    }
+
+    /**
+     * Remove trabalhoTrabalho
+     *
+     * @param \Serbinario\Bundle\UCHIBundle\Entity\Trabalho $trabalhoTrabalho
+     */
+    public function removeTrabalhoTrabalho(\Serbinario\Bundle\UCHIBundle\Entity\Trabalho $trabalhoTrabalho)
+    {
+        $this->trabalhoTrabalho->removeElement($trabalhoTrabalho);
+    }
+
+    /**
+     * Get trabalhoTrabalho
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrabalhoTrabalho()
+    {
+        return $this->trabalhoTrabalho;
     }
 }

@@ -6,7 +6,8 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %} 
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{asset('css/bootstrap_paperv3.3.2.min.css')}}" />   
+            <link rel="stylesheet" href="{{asset('css/bootstrap_paperv3.3.2.min.css')}}" />
+            <link rel="stylesheet" href="{{asset('css/dataTable.css')}}" />
             <link rel="stylesheet" href="{{asset('css/bootstrapValidator.min.css')}}" />    
             <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.css')}}" />
             <style type="text/css" rel="stylesheet">
@@ -54,7 +55,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cadastro<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="">Candidato</a>         
+                                        <a href="{{ path('saveCandidato') }}">Candidato</a>         
                                     </li>
                                 </ul>                                
                             </li>
@@ -64,7 +65,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rank<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="">Rank Geral</a>         
+                                        <a href="{{ path('gridRankingGeral') }}">Rank Geral</a>         
                                     </li>
                                 </ul>                                
                             </li>
@@ -102,6 +103,34 @@
             <!-- include form validation  -->
             <script type="text/javascript" src="{{asset('js/bootstrapValidator.min.js')}}"></script>
             <script type="text/javascript" src="{{asset('js/jquery.datetimepicker.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/jquery.mask.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/mask/mask.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/source/campos_toUpperCase.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+            <script type="text/javascript" >
+                $(document).ready(function () {
+                    $('.datepicker').datetimepicker({
+                        format: 'd/m/Y H:i',
+                        mask: false,
+                        lang: 'pt-BR'
+                    });
+
+                    $('.datenottime').datetimepicker({
+                        format: 'd/m/Y',
+                        mask: false,
+                        timepicker: false,
+                        lang: 'pt-BR'
+                    });
+
+                    $('.timepicker').datetimepicker({
+                        format: 'H:i:s',
+                        datepicker: false,
+                        timepicker: false,
+                        mask: true,
+                        lang: 'pt-BR'
+                    });
+                });
+            </script>
         {% endblock %}
     </body>
 </html>

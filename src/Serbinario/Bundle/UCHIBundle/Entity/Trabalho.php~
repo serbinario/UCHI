@@ -1,0 +1,46 @@
+<?php
+
+namespace Serbinario\Bundle\UCHIBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Trabalho
+ *
+ * @ORM\Table(name="trabalho")
+ * @ORM\Entity
+ */
+class Trabalho
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_trabalho", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idTrabalho;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_trabalho", type="string", length=40, nullable=false)
+     */
+    private $nomeTrabalho;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Canditato", mappedBy="trabalhoTrabalho")
+     */
+    private $canditatoCanditato;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->canditatoCanditato = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
