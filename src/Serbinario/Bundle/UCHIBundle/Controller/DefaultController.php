@@ -127,6 +127,13 @@ class DefaultController extends Controller
                 #Recuperando os dados
                 $candidato = $form->getData();
                 
+                //Adiciona as opções desejadas
+                $idTrabalhos = array();
+                foreach ($candidato->getCandidatoTemTrabalho() as $trabalhos) {
+                    $idTrabalhos[] = $trabalhos->getId();
+                    $trabalhos->setCandidatoCandidato($candidato);
+                }
+                
                 #Resultado da operação
                 $result =  $candidatoRN->update($candidato);
                 
