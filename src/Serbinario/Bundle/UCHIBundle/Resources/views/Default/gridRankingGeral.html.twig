@@ -96,8 +96,14 @@
                                 "type": "POST"
                             },
                             "columns": [
-                                {"data": "nome"},
-                                {"data": "valor"}                                
+                                {
+                                    "data": "nome",
+                                    "orderable": false
+                                },
+                                {
+                                    "data": "valor",
+                                    "orderable": false
+                                }                                
                             ],
                             "order": [[0, 'asc']],
                             language: {
