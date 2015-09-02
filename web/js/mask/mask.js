@@ -12,6 +12,7 @@ $(document).ready(function() {
     //mascaras genéricas
     $('.mask_cep').mask('00000-000');
     $('.mask_rg').mask('0.000.000', {reverse: true});
+    $('.mask_cnpj').mask('00.000.000/0000-00');
     $('.mask_numero').mask('00000000000000000000000');
     $('.mask_telefone').mask(maskBehavior, options);
     $('.mask_horario').mask('00:00');
